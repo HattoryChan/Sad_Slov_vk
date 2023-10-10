@@ -4625,6 +4625,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.System.Exps.viewportwidth,
 		C3.Plugins.System.Exps.viewportheight,
 		C3.Plugins.System.Exps.layerscale,
+		C3.Plugins.System.Acts.SetLayoutScale,
 		C3.Plugins.Spritefont2.Acts.SetInstanceVar,
 		C3.Plugins.System.Exps.len,
 		C3.Plugins.Sprite.Acts.SetSize,
@@ -4742,6 +4743,7 @@ self.C3_GetObjectRefTable = function () {
 		C3.Plugins.Mouse.Cnds.IsButtonDown,
 		C3.Plugins.Browser.Cnds.OnResize,
 		C3.Plugins.Mouse.Acts.SetCursor,
+		C3.Plugins.Eponesh_GameScore.Acts.AdsShowSticky,
 		C3.Plugins.Eponesh_GameScore.Acts.LeaderboardFetchPlayerRatingScoped,
 		C3.Plugins.Eponesh_GameScore.Exps.LeaderboardCurPlayerPosition,
 		C3.Plugins.AJAX.Acts.Post,
@@ -5024,6 +5026,8 @@ self.C3_JsPropNameTable = [
 	{Sine2: 0},
 	{Xtouch: 0},
 	{свечение: 0},
+	{TiledBackground12: 0},
+	{BackgoundStickyAd: 0},
 	{AJAX: 0},
 	{Browser: 0},
 	{check_words: 0},
@@ -5285,6 +5289,7 @@ self.C3_ExpressionFuncs = [
 		() => "garden2",
 		() => "garden3",
 		() => "garden4",
+		() => 1.25,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const f1 = p._GetNode(1).GetBoundMethod();
@@ -5292,8 +5297,9 @@ self.C3_ExpressionFuncs = [
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => (f0("up_icon") / 400);
+			return () => (f0("up_icon") / 600);
 		},
+		() => 0.75,
 		() => 18,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -5350,12 +5356,12 @@ self.C3_ExpressionFuncs = [
 		p => {
 			const n0 = p._GetNode(0);
 			const n1 = p._GetNode(1);
-			return () => (n0.ExpObject() - (200 * (n1.ExpObject() / 669)));
+			return () => (n0.ExpObject() - (200 * (n1.ExpObject() / 800)));
 		},
 		p => {
 			const n0 = p._GetNode(0);
 			const n1 = p._GetNode(1);
-			return () => ((n0.ExpObject() - (n1.ExpObject() * (185 / 669))) + 10);
+			return () => ((n0.ExpObject() - (n1.ExpObject() * (185 / 800))) + 10);
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -5432,22 +5438,11 @@ self.C3_ExpressionFuncs = [
 		() => 0.4,
 		p => {
 			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() - 85);
+			return () => (n0.ExpObject() - 60);
 		},
 		p => {
 			const n0 = p._GetNode(0);
-			return () => (n0.ExpObject() - 25);
-		},
-		p => {
-			const f0 = p._GetNode(0).GetBoundMethod();
-			const f1 = p._GetNode(1).GetBoundMethod();
-			return () => (f0("Layer 0") / f1("Layer 0"));
-		},
-		() => 2.3,
-		p => {
-			const n0 = p._GetNode(0);
-			const f1 = p._GetNode(1).GetBoundMethod();
-			return () => (n0.ExpObject() - (25 * (f1("Layer 0") / 0.68)));
+			return () => (n0.ExpObject() - 40);
 		},
 		() => "0",
 		() => 0.05,
@@ -5488,6 +5483,11 @@ self.C3_ExpressionFuncs = [
 			const v1 = p._GetNode(1).GetVar();
 			return () => (n0.ExpObject() + (25 * (10 - ((v1.GetValue() - 202) / 50))));
 		},
+		p => {
+			const f0 = p._GetNode(0).GetBoundMethod();
+			const f1 = p._GetNode(1).GetBoundMethod();
+			return () => (f0("Layer 0") / f1("Layer 0"));
+		},
 		() => 1.75,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -5522,6 +5522,10 @@ self.C3_ExpressionFuncs = [
 		() => 16777215,
 		() => "+1",
 		() => 0.23,
+		p => {
+			const n0 = p._GetNode(0);
+			return () => (n0.ExpObject() - 25);
+		},
 		() => 51,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -6017,6 +6021,16 @@ self.C3_ExpressionFuncs = [
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			return () => add(f0("lvl"), 1);
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			const n1 = p._GetNode(1);
+			return () => (n0.ExpObject() - (200 * (n1.ExpObject() / 669)));
+		},
+		p => {
+			const n0 = p._GetNode(0);
+			const n1 = p._GetNode(1);
+			return () => ((n0.ExpObject() - (n1.ExpObject() * (185 / 669))) + 10);
 		},
 		() => 425.5,
 		() => 116.5,
@@ -6614,7 +6628,6 @@ self.C3_ExpressionFuncs = [
 		() => "500",
 		() => 272.924654,
 		() => 47.578957,
-		() => 0.75,
 		p => {
 			const n0 = p._GetNode(0);
 			const f1 = p._GetNode(1).GetBoundMethod();
@@ -6701,7 +6714,7 @@ self.C3_ExpressionFuncs = [
 		() => "up",
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
-			return () => (f0("items") / 490);
+			return () => (f0("items") / 600);
 		},
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
@@ -6910,6 +6923,7 @@ self.C3_ExpressionFuncs = [
 		() => "name",
 		() => 11,
 		() => "load_start",
+		() => 0.8,
 		p => {
 			const f0 = p._GetNode(0).GetBoundMethod();
 			const f1 = p._GetNode(1).GetBoundMethod();
